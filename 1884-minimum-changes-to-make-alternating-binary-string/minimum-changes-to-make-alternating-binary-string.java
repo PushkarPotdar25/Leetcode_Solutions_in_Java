@@ -1,0 +1,17 @@
+class Solution {
+    public int minOperations(String s) {
+        int countStartWith0 = 0;
+        int countStartWith1 = 0;
+        for(int i = 0; i < s.length(); i++){
+            if(i % 2 == 0){
+                if(s.charAt(i) != '0') countStartWith0++;
+                if(s.charAt(i) != '1') countStartWith1++;
+            }
+            else{
+                if(s.charAt(i) != '1') countStartWith0++;
+                if(s.charAt(i) != '0') countStartWith1++;
+            }
+        }
+        return Math.min(countStartWith0, countStartWith1);
+    }
+}
