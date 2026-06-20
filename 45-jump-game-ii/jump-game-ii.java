@@ -10,14 +10,10 @@ class Solution {
             farthest = Math.max(farthest, i + nums[i]);
 
             if (i == currentEnd) {
-
                 jumps++;
-
                 currentEnd = farthest;
-
             }
         }
-
         return jumps;
     }
 }
