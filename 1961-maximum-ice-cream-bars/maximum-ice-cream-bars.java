@@ -8,6 +8,9 @@ class Solution {
                 count++;
                 coins -= costs[i];
             }
+            if(costs[i] > coins){
+                break;
+            }
         }
         return count;
     }
