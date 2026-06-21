@@ -1,27 +1,25 @@
 import java.util.*;
 
 class Solution {
-    public int numberOfSubarrays(int[] nums, int k) {
 
-        HashMap<Integer, Integer> map = new HashMap<>();
+    private int atmost(int[] nums,int oddno){
+        int left = 0;
+        int oddcnt = 0;
+        int count = 0;
 
-        map.put(0, 1);
+        for(int right = 0;right < nums.length;right++){
+            if(nums[right] % 2 == 1) oddcnt++;
 
-        int oddCount = 0;
-        int answer = 0;
-
-        for (int num : nums) {
-
-            if (num % 2 == 1) {
-                oddCount++;
+            while(oddcnt > oddno){
+                if(nums[left] % 2 == 1) oddcnt--;
+                left++;
             }
-
-            answer += map.getOrDefault(oddCount - k, 0);
-
-            map.put(oddCount,
-                    map.getOrDefault(oddCount, 0) + 1);
+            count += right - left + 1;
         }
+        return count;
+    }
 
-        return answer;
+    public int numberOfSubarrays(int[] nums, int k) {
+        return atmost(nums,k) - atmost(nums,k-1);
     }
 }
